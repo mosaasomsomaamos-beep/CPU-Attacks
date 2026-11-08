@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM ERROR</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .header {
+            font-size: 22px;
+            color: #ff0000;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 10px;
+            animation: blink 0.5s infinite alternate;
+        }
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0.3; }
+        }
+        .console {
+            flex-grow: 1;
+            overflow: hidden;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            color: #00ff66;
+        }
+        .footer {
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            background: #990000;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body onclick="makeFullScreen()">
+
+    <div class="header">⚠️ تحذير: تم اختراق نواة المعالج (CPU HACKED) ⚠️</div>
+    
+    <div class="console" id="console"></div>
+
+    <div class="footer" id="status">جاري تجاوز جدار الحماية... (15%)</div>
+
+    <script>
+        function makeFullScreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        }
+
+        const logs = [
+            "> Initializing root exploit...",
+            "> Bypassing kernel level security...",
+            "> Accessing /storage/emulated/0/DCIM/Camera ... [FOUND 1,420 Photos]",
+            "> Accessing /data/data/com.whatsapp/databases/ ... [FOUND]",
+            "> Uploading private contacts to remote server (192.168.1.105)...",
+            "> WARNING: Root access granted to external attacker.",
+            "> Encrypting system partitions with AES-256...",
+            "> CPU Temperature critical: 98°C ... Thermal throttling failed.",
+            "> --------------------------------------------------",
+            "> FATAL ERROR: Operating system corruption imminent.",
+            "> DO NOT TURN OFF YOUR DEVICE OR DATA WILL BE DESTROYED PERMANENTLY!"
+        ];
+
+        let consoleDiv = document.getElementById('console');
+        let statusDiv = document.getElementById('status');
+        let index = 0;
+
+        function addLog() {
+            if (index < logs.length) {
+                consoleDiv.innerHTML += logs[index] + "\n";
+                // تحديث النسبة المئوية
+                let percent = Math.min(100, (index + 1) * 10);
+                statusDiv.innerText = `جاري نقل البيانات الحساسة... (${percent}%)`;
+                index++;
+                setTimeout(addLog, 800); // سرعة ظهور الأكواد
+            } else {
+                statusDiv.innerText = "😂 مقلب بسيط يا صديقي! جهازك بأمان تام ولا يوجد أي اختراق.";
+                statusDiv.style.background = "#006600";
+            }
+        }
+
+        setTimeout(addLog, 1000);
+    </script>
+</body>
+</html>
